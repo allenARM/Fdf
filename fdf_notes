@@ -1,0 +1,153 @@
+Fdf means 'Fil de Fer' or 'Wire frame' in english and our goal will be to draw a map in relief.
+Thus it's a small cartography software that can be seen as Google maps but worse.
+MinilibX enable us to create a window, to display pixels inside, to draw a pixel, to handle a few events.
+So we have x and y coordinate system in which values such as 10 means an altitude of z coordinate in 3D map.
+> cat maps/42.fdf
+> make
+>./fdf maps/42.fdf  // launch the 42 map
+little graphical window
+- change the altitude
+- zoom, move inside
+- bonus: rotations to turn the map, or fill this map with colors to give a small deep effect, handle hidden sides,
+change the color range, do an rainbow effect.
+display a line: drawing line algorithm will be to draw lines in every direction and every orientation.
+Bresenham algorithm in Wikipedia. The aim is to dram line from Point A to Point B on pixels.
+Projections:
+- isometric
+- parallel
+- conical
+====================================================================================================
+MLX: the MinilibX!
+Simple a small homemade library, which will allow you to open windows on the screen and make pretty drawings inside.
+To allow you quickly access graphic projects.
+- to open a window,
+- light a pixel and
+- deal with events linked to this window: keyboard and mouse
+Several man of the MinilibX:
+1) ~mlx: man /usr/share/man/man3/mlx.1 //what the MinilibX is about, how it works, define the include you have to put
+in your program. What is the first absolutely essential f-n that connects you to the Mac's graphical server: mlx_init ();
+How you will be able to compile you MinilibX on MacOS.
+2) ~mlx: man /usr/share/man/man3/mlx_new_window.1
+3) ~mlx: man /usr/share/man/man3/mlx_pixel_put.1
+4) ~mlx: man /usr/share/man/man3/mlx_loop.1
+EXAMPLE.
+~mlx: emacs -nw main.c
+// we will open a window
+#include "mlx.h"
+int main() {
+    void *mlx_ptr;
+    void *win_ptr;
+    mlx_ptr = mlx_init(); // returns a void*, it's just a connection login to the graphical server.
+    win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
+    mlx_loop(mlx_ptr);
+}
+// complile all this
+~mlx: cc -I /usr/local/include main.c -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+// execute
+~mlx: ./a.out
+// the window opens on the screen!
+====================================================================================================
+Management of the events.
+The events are when the user will use the keyboard or the mouse and you will be able to retrieve the info in your program.
+EXAMPLE.
+~mlx: emacs -nw main.c
+// we will open a window
+#include <unistd.h>
+#include "mlx.h"
+int ft_putchar(char c)
+{
+    write(1, &c, 1);
+}
+int deal_key(int key, void *param)
+{
+    ft_putchar('X');
+    mlx_pixel_put(mlx_ptr, win_ptr, );
+    return (0);
+}
+int main()
+{
+    void *mlx_ptr;
+    void *win_ptr;
+    mlx_ptr = mlx_init(); // returns a void*, it's just a connection login to the graphical server.
+    win_ptr = mlx_new_window(mlx_ptr, 500, 500, "mlx 42");
+    mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
+    mlx_key_hook(win_ptr, deal_key, (void *)0;
+    mlx_loop(mlx_ptr);
+}
+====================================================================================================
+====================================================================================================
+====================================================================================================
+Resources:
+- https://github.com/VBrazhnik/FdF/wiki
+- library man page http://files.achedeuzot.me/42/mlx/man/
+To draw a line you can use:
+- Bresenham's line https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm (simpler solution) or
+- Xiaolin Wu's line https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm (more sophisticated
+solution which will produced more beautiful result).
+How do I figure out if my program has a memory leak?
+There's a ton of ways to see if your program has memory leaks and one of the easiest ways to do so is
+through the leaks command on all of the lab computers! The easiest way I found to use leaks is to
+simply add an infinite loop at the end of your program and then have another Terminal window open to
+run the leaks command on!
+while(1)
+        ;
+====================================================================================================
+====================================================================================================
+====================================================================================================
+Makefile
+Recommended compiler and linker flags for GCC:
+https://gcc.gnu.org/onlinedocs/gcc/Invoking-GCC.html
+https://developers.redhat.com/blog/2018/03/21/compiler-and-linker-flags-gcc/
+https://stackoverflow.com/questions/3375697/useful-gcc-flags-for-c
+-Wall   Recommended compiler warnings.
+-Werror Make all warnings into errors.
+-Wextra This enables some extra warning flags that are not enabled by -Wall.
+-g      Generate debugging information
+-O      optimizations
+====================================================================================================
+“events” programming
+Event-driven programming is a programming paradigm in which the flow of the program is determined by events
+such as user actions (mouse clicks, key presses), sensor outputs, or messages from other programs/threads.
+Mlx man - http://files.achedeuzot.me/42/mlx/man/
+To open manual from the project folder go to /minilibx_macos/man directory, then type 'man man3/mlx.1'
+mlx_init            To create connection between your software and the display.
+mlx_new_window      To create a new window on the screen.
+mlx_loop            To receive events.
+F-n to parse the data to the program - acquire_xyz (opening the map file, then call the function that reads it into a list of strings (containing the lines)):
+1. read_map_to_lst  (reads the lines of the map file and stores them in a linked list)
+2. ft_lstdel2   (??? from libft)
+3. chr_mtx_3d   (splits the lines acquired into matrix elements of text)
+4. lines_are_uniform    (makes sure that the number of values in every line is the same)
+5.
+6.
+7. free_mtx_chr     (???)
+8. pts_mtx_3d   (sets the struct of the points with the values that it should have.)
+====================================================================================================
+matrix.c - perspective & rotation
+1. Isometric projection is a method for visually representing three-dimensional objects in two dimensions in technical and engineering drawings.
+2. A parallel projection is a projection of an object in three-dimensional space onto a fixed plane, known as the projection plane or image plane, where the rays, known as lines of sight or projection lines, are parallel to each other.
+3.
+Graphic book (rus) (useful rotation formulas on page 27) - https://drive.google.com/open?id=1OVFNf9yHI-GYe_eCYDklXN4QxhVMkuVD
+Матрица поворота https://ru.wikipedia.org/wiki/%D0%9C%D0%B0%D1%82%D1%80%D0%B8%D1%86%D0%B0_%D0%BF%D0%BE%D0%B2%D0%BE%D1%80%D0%BE%D1%82%D0%B0
+http://www.songho.ca/opengl/gl_anglestoaxes.html
+Поворот вокруг оси x на угол γ:
+X = x
+Y = y cosγ + z sinγ
+Z = -y sinγ + z cosγ
+Поворот вокруг оси y на угол γ:
+X = x cosγ + z sinγ
+Y = y
+Z = -x sinγ + z cosγ
+Поворот вокруг оси z на угол γ:
+X = x cosγ + y sinγ
+Y = -x sinγ + y cosγ
+Z = z
+====================================================================================================
+DDA method (Digital differential analyzer):
+https://www.tutorialspoint.com/computer_graphics/line_generation_algorithm.htm
+https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
+Example: https://www.geeksforgeeks.org/dda-line-generation-algorithm-computer-graphics/
+====================================================================================================
+OpenGL tutorials:
+https://triplepointfive.github.io/ogltutor/
+https://courses.edx.org/courses/course-v1:UCSDx+CSE167x+2T2016/course/
