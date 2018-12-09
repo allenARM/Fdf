@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   exit_clear.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 20:10:32 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/09 15:49:14 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/09 15:38:14 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/09 15:38:22 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	read_file(t_fdf *fdf, char *str)
+int	exit_fn(int key, t_fdf *fdf)
 {
-	fdf = NULL;
-	str = NULL;
-}
-
-/*
-** dont forget to remove mlx_mouse_hook
-*/
-
-int		main(int argc, char **argv)
-{
-	t_fdf fdf;
-
-	assign_to_zero(&fdf);
-	if (argc == 2)
-		read_file(&fdf, argv[1]);
-	fdf.mlx = mlx_init();
-	fdf.win = mlx_new_window(fdf.mlx, 1024, 1024, "JOPA");
-	mlx_key_hook(fdf.win, exit_fn, &fdf);
-	mlx_mouse_hook(fdf.win, mouse_release, &fdf);
-	mlx_loop(fdf.mlx);
+	if (key == 53)
+		exit(1);
+	if (key == 42)
+		mlx_clear_window(fdf->mlx, fdf->win);
+	return (0);
 }

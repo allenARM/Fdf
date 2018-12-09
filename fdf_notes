@@ -1,5 +1,3 @@
-Fdf means 'Fil de Fer' or 'Wire frame' in english and our goal will be to draw a map in relief.
-Thus it's a small cartography software that can be seen as Google maps but worse.
 MinilibX enable us to create a window, to display pixels inside, to draw a pixel, to handle a few events.
 So we have x and y coordinate system in which values such as 10 means an altitude of z coordinate in 3D map.
 > cat maps/42.fdf

@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   assign_to_zero.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/06 20:10:32 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/09 15:49:14 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/09 15:40:21 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/09 15:43:38 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	read_file(t_fdf *fdf, char *str)
+void	assign_to_zero(t_fdf *fdf)
 {
-	fdf = NULL;
-	str = NULL;
-}
-
-/*
-** dont forget to remove mlx_mouse_hook
-*/
-
-int		main(int argc, char **argv)
-{
-	t_fdf fdf;
-
-	assign_to_zero(&fdf);
-	if (argc == 2)
-		read_file(&fdf, argv[1]);
-	fdf.mlx = mlx_init();
-	fdf.win = mlx_new_window(fdf.mlx, 1024, 1024, "JOPA");
-	mlx_key_hook(fdf.win, exit_fn, &fdf);
-	mlx_mouse_hook(fdf.win, mouse_release, &fdf);
-	mlx_loop(fdf.mlx);
+	fdf->x1 = 0;
+	fdf->x2 = 0;
+	fdf->y1 = 0;
+	fdf->y2 = 0;
 }
