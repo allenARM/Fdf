@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 19:19:46 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/04 14:58:53 by amelikia         ###   ########.fr       */
+/*   Updated: 2018/12/09 16:54:46 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,6 @@ int					ft_sizeofint(int num, int base);
 char				**ft_create_arr(int height, int width);
 void				ft_clean_arr(char ***argv);
 void				ft_clean_int_arr(int ***map);
-
-typedef struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
 
 int					b_printf(const char *restrict s, ...);
 char				*ft_makestr(char c);
