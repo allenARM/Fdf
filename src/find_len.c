@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_size.c                                        :+:      :+:    :+:   */
+/*   find_len.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/09 16:48:47 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/10 13:20:12 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/10 12:20:42 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/10 12:21:45 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	ft_list_size(t_list *list)
+int		find_len(char *s)
 {
 	int i;
+	int j;
 
 	i = 0;
-	if (list == NULL)
-		return (0);
-	while (list)
+	j = 0;
+	while (s[i])
 	{
-		i++;
-		list = list->next;
+		while (s[i] && s[i] == ' ')
+			i++;
+		j++;
+		while (s[i] && s[i] != ' ')
+			i++;
 	}
-	return (i);
+	return (j);
 }

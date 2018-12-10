@@ -6,34 +6,11 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 20:10:32 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/09 17:21:32 by amelikia         ###   ########.fr       */
+/*   Updated: 2018/12/10 13:09:59 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	read_file(t_fdf *fdf, char *str)
-{
-	int		fd;
-	t_list	*matrix;
-	char	*line;
-
-	matrix = NULL;
-	fdf->x1 = 0;
-	fd = open(str, O_RDONLY);
-	while (get_next_line(fd, &line) == 1)
-	{
-		matrix = list_append(matrix, line);
-		// ft_printf("%s\n", line);
-		ft_strdel(&line);
-	}
-	while (matrix)
-	{
-		ft_printf("%s\n", matrix->line);
-		matrix = matrix->next;
-	}
-	close(fd);
-}
 
 /*
 ** dont forget to remove mlx_mouse_hook

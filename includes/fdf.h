@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 20:36:55 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/09 16:56:57 by amelikia         ###   ########.fr       */
+/*   Updated: 2018/12/10 13:21:34 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,29 @@ typedef struct		s_list
 
 typedef struct	s_fdf
 {
-	void		*mlx;
-	void		*win;
-	int			**num;
-	int			x1;
-	int			x2;
-	int			y1;
-	int			y2;
-}				t_fdf;
+	void	*mlx;
+	void	*win;
+	int		**num;
+	int		width;
+	int		height;
+	int		x1;
+	int		x2;
+	int		y1;
+	int		y2;
+}			t_fdf;
 
 int			exit_fn(int key, t_fdf *fdf);
 void		assign_to_zero(t_fdf *fdf);
+void		read_file(t_fdf *fdf, char *str);
+void		move_to_int(t_list *matrix, t_fdf *fdf);
 
 /*
 ** utils below
 */
 
-int			list_size(t_list *list);
-t_list	*list_append(t_list *matrix, char *str);
-
+int			ft_list_size(t_list *list);
+t_list		*list_append(t_list *matrix, char *str);
+int			find_len(char *s);
 /*
 ** delete below later
 */
