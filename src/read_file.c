@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 12:21:29 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/10 13:20:50 by amelikia         ###   ########.fr       */
+/*   Updated: 2018/12/11 20:26:00 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,32 @@ void	print_nums(t_fdf *fdf)
 	}
 }
 
+void	print_figure(t_fdf *fdf)
+{
+	int i;
+	int j;
+	int z = 50;
+	int x = 50;
+	int y;
+	int off;
+
+	off = 50;
+	i = 0;
+	while (i < fdf->height)
+	{
+		j = 0;
+		while (j < fdf->width)
+		{
+			z = fdf->num[i][j];
+			x = ((x - y) + i + off) * cos(0.523599);
+			y = -z + ((x + y) + j + off) * sin(0.523599);
+			mlx_pixel_put(fdf->mlx, fdf->win, x, y, 0xFFFFFF);
+			j++;
+		}
+		i++;
+	}
+}
+
 /*
 ** remove print_nums later
 */
@@ -50,6 +76,7 @@ void	read_file(t_fdf *fdf, char *str)
 		ft_strdel(&line);
 	}
 	move_to_int(matrix, fdf);
+	print_figure(fdf);
 	print_nums(fdf);
 	close(fd);
 }

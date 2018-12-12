@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 15:37:15 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/09 15:48:21 by amelikia         ###   ########.fr       */
+/*   Updated: 2018/12/11 18:08:23 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,37 +94,27 @@ void	printline(t_fdf *fdf)
 		else
 			printHIGH(fdf, fdf->x1, fdf->y1, fdf->x2, fdf->y2);
 	}
-	fdf->x1 = 0;
-	fdf->x2 = 0;
-	fdf->y1 = 0;
-	fdf->y2 = 0;
 }
 
 int		mouse_release(int button, int x, int y, t_fdf *fdf)
 {
 	if (button == 1 && fdf->x1 == 0)
 	{
-		ft_printf("x: %d y: %d\n", x, y);
-		mlx_pixel_put(fdf->mlx, fdf->win, x - 2, y - 2, 0x8470ff);
-		mlx_pixel_put(fdf->mlx, fdf->win, x - 1, y - 1, 0x8470ff);
-		mlx_pixel_put(fdf->mlx, fdf->win, x, y, 0x8470ff);
-		mlx_pixel_put(fdf->mlx, fdf->win, x + 2, y + 2, 0x8470ff);
-		mlx_pixel_put(fdf->mlx, fdf->win, x + 1, y + 1, 0x8470ff);
 		fdf->x1 = x;
 		fdf->y1 = y;
 	}
 	else if (button == 1 && fdf->x1 != 0)
 	{
-		ft_printf("x: %d y: %d\n", x, y);
-		mlx_pixel_put(fdf->mlx, fdf->win, x - 2, y - 2, 0xff1493);
-		mlx_pixel_put(fdf->mlx, fdf->win, x - 1, y - 1, 0xff1493);
-		mlx_pixel_put(fdf->mlx, fdf->win, x, y, 0xff1493);
-		mlx_pixel_put(fdf->mlx, fdf->win, x + 2, y + 2, 0xff1493);
-		mlx_pixel_put(fdf->mlx, fdf->win, x + 1, y + 1, 0xff1493);
 		fdf->x2 = x;
 		fdf->y2 = y;
 	}
 	if (fdf->x1 > 0 && fdf->x2 > 0)
+	{
 		printline(fdf);
+		fdf->x1 = 0;
+		fdf->x2 = 0;
+		fdf->y1 = 0;
+		fdf->y2 = 0;
+	}
 	return (0);
 }

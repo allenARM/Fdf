@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 20:36:55 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/10 13:21:34 by amelikia         ###   ########.fr       */
+/*   Updated: 2018/12/11 18:57:45 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../minilibx_macos/mlx.h"
 # include "../libft/libft.h"
 # include <fcntl.h>
+# include <math.h>
 
 typedef struct		s_list
 {
