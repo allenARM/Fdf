@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 12:21:29 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/11 20:26:00 by amelikia         ###   ########.fr       */
+/*   Updated: 2018/12/12 18:08:28 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	read_file(t_fdf *fdf, char *str)
 		ft_strdel(&line);
 	}
 	move_to_int(matrix, fdf);
-	print_figure(fdf);
+	make_data(fdf)
+	// print_figure(fdf);
 	print_nums(fdf);
 	close(fd);
 }
