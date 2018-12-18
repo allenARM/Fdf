@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 12:21:29 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/12 18:08:28 by amelikia         ###   ########.fr       */
+/*   Updated: 2018/12/17 21:05:12 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,71 @@ void	print_figure(t_fdf *fdf)
 {
 	int i;
 	int j;
-	int z = 50;
-	int x = 50;
-	int y;
-	int off;
 
-	off = 50;
 	i = 0;
-	while (i < fdf->height)
+	while (i < fdf->height - 1)
 	{
 		j = 0;
-		while (j < fdf->width)
+		while (j < fdf->width - 1)
 		{
-			z = fdf->num[i][j];
-			x = ((x - y) + i + off) * cos(0.523599);
-			y = -z + ((x + y) + j + off) * sin(0.523599);
-			mlx_pixel_put(fdf->mlx, fdf->win, x, y, 0xFFFFFF);
+			fdf->x1 = fdf->xyz_modif[i][j]->x;
+			fdf->y1 = fdf->xyz_modif[i][j]->y;
+			fdf->x2 = fdf->xyz_modif[i + 1][j]->x;
+			fdf->y2 = fdf->xyz_modif[i + 1][j]->y;
+			printline(fdf);
+			fdf->x2 = fdf->xyz_modif[i][j + 1]->x;
+			fdf->y2 = fdf->xyz_modif[i][j + 1]->y;
+			printline(fdf);
 			j++;
 		}
 		i++;
 	}
 }
 
+void	print_stock(t_fdf *fdf)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < fdf->height)
+	{
+		j = 0;
+		while (j < fdf->width)
+		{
+			ft_printf("%2d%2d|%3d| ", fdf->xyz_stock[i][j]->x,\
+			fdf->xyz_stock[i][j]->y, fdf->xyz_stock[i][j]->z);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+}
+
+void	print_modif(t_fdf *fdf)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < fdf->height)
+	{
+		j = 0;
+		while (j < fdf->width)
+		{
+			ft_printf("%3d:%3d | ", fdf->xyz_modif[i][j]->x,\
+			fdf->xyz_modif[i][j]->y);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+}
+
 /*
-** remove print_nums later
+** remove everything above
 */
 
 void	read_file(t_fdf *fdf, char *str)
@@ -76,8 +117,12 @@ void	read_file(t_fdf *fdf, char *str)
 		ft_strdel(&line);
 	}
 	move_to_int(matrix, fdf);
-	make_data(fdf)
-	// print_figure(fdf);
 	print_nums(fdf);
+	save_data_in_stock(fdf);
+	print_stock(fdf);
+	make_modified(fdf);
+	ft_printf("\n----------\n");
+	print_modif(fdf);
+	print_figure(fdf);
 	close(fd);
 }
