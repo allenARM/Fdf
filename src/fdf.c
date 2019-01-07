@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 20:10:32 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/17 21:20:06 by amelikia         ###   ########.fr       */
+/*   Updated: 2018/12/17 21:32:48 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 		read_file(&fdf, argv[1]);
 	mlx_key_hook(fdf.win, exit_fn, &fdf);
-	mlx_mouse_hook(fdf.win, mouse_release, &fdf);
+	// mlx_mouse_hook(fdf.win, mouse_release, &fdf);
 	mlx_loop(fdf.mlx);
 }

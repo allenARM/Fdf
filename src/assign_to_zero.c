@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 15:40:21 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/09 15:43:38 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/01/07 12:39:28 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,6 @@ void	assign_to_zero(t_fdf *fdf)
 	fdf->x2 = 0;
 	fdf->y1 = 0;
 	fdf->y2 = 0;
+	fdf->anglex = 0.523599;
+	fdf->angley = 0.523599;
 }

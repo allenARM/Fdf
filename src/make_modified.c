@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 20:39:03 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/17 21:25:08 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/01/07 12:41:23 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,10 @@ void	make_modified(t_fdf *fdf)
 		while (j < fdf->width)
 		{
 			fdf->xyz_modif[i][j] = malloc(sizeof(t_point));
-			fdf->xyz_stock[i][j]->x *= 30;
-			fdf->xyz_stock[i][j]->y *= 30;
-			fdf->xyz_stock[i][j]->z *= 10;
-			fdf->xyz_modif[i][j]->x = 200 + ((fdf->xyz_stock[i][j]->x -\
-				fdf->xyz_stock[i][j]->y) * cos(0.523599));
-			fdf->xyz_modif[i][j]->y = 200 + (((fdf->xyz_stock[i][j]->x +\
-				fdf->xyz_stock[i][j]->y) * sin(0.523599))\
+			fdf->xyz_modif[i][j]->x = 400 + ((fdf->xyz_stock[i][j]->x -\
+				fdf->xyz_stock[i][j]->y) * cos(fdf->anglex));
+			fdf->xyz_modif[i][j]->y = 150 + (((fdf->xyz_stock[i][j]->x +\
+				fdf->xyz_stock[i][j]->y) * sin(fdf->angley))\
 				- fdf->xyz_stock[i][j]->z);
 			j++;
 		}

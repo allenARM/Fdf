@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 20:36:55 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/17 21:08:56 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/01/07 12:44:22 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ typedef struct		s_fdf
 {
 	void			*mlx;
 	void			*win;
-	int				x1;
-	int				x2;
-	int				y1;
-	int				y2;
+	double		x1;
+	double		x2;
+	double		y1;
+	double		y2;
 	int				**num;
 	int				width;
 	int				height;
-	double			angle;
+	double			anglex;
+	double			angley;
 	double			color_incr;
 	t_point			***xyz_stock;
 	t_point			***xyz_modif;
@@ -55,6 +56,7 @@ void				move_to_int(t_list *matrix, t_fdf *fdf);
 void				save_data_in_stock(t_fdf *fdf);
 void				make_modified(t_fdf *fdf);
 void				printline(t_fdf *fdf);
+void				print_figure(t_fdf *fdf);
 
 /*
 ** utils below

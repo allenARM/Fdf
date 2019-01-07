@@ -6,20 +6,20 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 15:37:15 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/17 21:02:31 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/01/07 12:45:34 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	printLOW(t_fdf *fdf, int x1, int y1, int x2, int y2)
+void	printLOW(t_fdf *fdf, double x1, double y1, double x2, double y2)
 {
-	int diffx;
-	int diffy;
-	int yi;
-	int d;
-	int y;
-	int x;
+	double diffx;
+	double diffy;
+	double yi;
+	double d;
+	double y;
+	double x;
 
 	x1 > x2 ? (diffx = x1 - x2) : (diffx = x2 - x1);
 	diffy = y2 - y1;
@@ -45,14 +45,14 @@ void	printLOW(t_fdf *fdf, int x1, int y1, int x2, int y2)
 	}
 }
 
-void	printHIGH(t_fdf *fdf, int x1, int y1, int x2, int y2)
+void	printHIGH(t_fdf *fdf, double x1, double y1, double x2, double y2)
 {
-	int diffx;
-	int diffy;
-	int xi;
-	int d;
-	int y;
-	int x;
+	double diffx;
+	double diffy;
+	double xi;
+	double d;
+	double y;
+	double x;
 
 	diffx = x2 - x1;
 	y1 > y2 ? (diffy = y1 - y2) : (diffy = y2 - y1);
