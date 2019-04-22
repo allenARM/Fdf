@@ -6,14 +6,15 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 15:37:15 by amelikia          #+#    #+#             */
-/*   Updated: 2019/01/07 12:45:34 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/04/22 14:02:59 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+//98765, 234567, 3456765, 8765678
 void	printLOW(t_fdf *fdf, double x1, double y1, double x2, double y2)
 {
+	int color = 98765;
 	double diffx;
 	double diffy;
 	double yi;
@@ -34,12 +35,13 @@ void	printLOW(t_fdf *fdf, double x1, double y1, double x2, double y2)
 	x = x1;
 	while (x != x2)
 	{
-		mlx_pixel_put(fdf->mlx, fdf->win, x, y, 0xFFFFFF);
+		mlx_pixel_put(fdf->mlx, fdf->win, x, y, color);
 		if (d > 0)
 		{
 			y = y + yi;
 			d = d - 2 * diffx;
 		}
+		color -= 280;
 		x++;
 		d = d + 2 * diffy;
 	}
@@ -47,6 +49,7 @@ void	printLOW(t_fdf *fdf, double x1, double y1, double x2, double y2)
 
 void	printHIGH(t_fdf *fdf, double x1, double y1, double x2, double y2)
 {
+	int color = 98765;
 	double diffx;
 	double diffy;
 	double xi;
@@ -67,12 +70,13 @@ void	printHIGH(t_fdf *fdf, double x1, double y1, double x2, double y2)
 	x = x1;
 	while (y != y2)
 	{
-		mlx_pixel_put(fdf->mlx, fdf->win, x, y, 0xFFFFFF);
+		mlx_pixel_put(fdf->mlx, fdf->win, x, y, color);
 		if (d > 0)
 		{
 			x = x + xi;
 			d = d - 2 * diffy;
 		}
+		color -= 280;
 		y++;
 		d = d + 2 * diffx;
 	}
@@ -94,27 +98,4 @@ void	printline(t_fdf *fdf)
 		else
 			printHIGH(fdf, fdf->x1, fdf->y1, fdf->x2, fdf->y2);
 	}
-}
-
-int		mouse_release(int button, int x, int y, t_fdf *fdf)
-{
-	if (button == 1 && fdf->x1 == 0)
-	{
-		fdf->x1 = x;
-		fdf->y1 = y;
-	}
-	else if (button == 1 && fdf->x1 != 0)
-	{
-		fdf->x2 = x;
-		fdf->y2 = y;
-	}
-	if (fdf->x1 > 0 && fdf->x2 > 0)
-	{
-		printline(fdf);
-		fdf->x1 = 0;
-		fdf->x2 = 0;
-		fdf->y1 = 0;
-		fdf->y2 = 0;
-	}
-	return (0);
 }
