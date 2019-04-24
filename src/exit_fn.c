@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 15:38:14 by amelikia          #+#    #+#             */
-/*   Updated: 2019/04/22 14:06:52 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/04/23 17:04:33 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,67 +88,23 @@ void	apl_minus(t_fdf *fdf)
 	}
 }
 
-int	exit_fn(int key, t_fdf *fdf)
+int		exit_fn(int key, t_fdf *fdf, int i)
 {
-	if (key == 53) //esc
-		exit(1);
-	if (key == 42) //над энтером
+	(key == 27) ? zoom_minus(fdf) : (i = 0);
+	(key == 24) ? zoom_plus(fdf) : (i = 0);
+	(key == 25) ? apl_plus(fdf) : (i = 0);
+	(key == 29) ? apl_minus(fdf) : (i = 0);
+	if (key == 42 || key == 126 || key == 125 || key == 123 || \
+		key == 124 || key == 27 || key == 25 || key == 24 || key == 29)
 		mlx_clear_window(fdf->mlx, fdf->win);
-	if (key == 126) //стрелка вверх
+	(key == 53) ? exit(1) : (i = 0);
+	(key == 126) ? fdf->angle->x += 0.1 : (i = 0);
+	(key == 126) ? fdf->angle->y += 0.1 : (i = 0);
+	(key == 125 || key == 123) ? fdf->angle->x -= 0.1 : (i = 0);
+	(key == 125 || key == 124) ? fdf->angle->y -= 0.1 : (i = 0);
+	if (key == 126 || key == 125 || key == 123 || key == 124 || \
+		key == 27 || key == 25 || key == 24 || key == 29)
 	{
-		mlx_clear_window(fdf->mlx, fdf->win);
-		fdf->anglex = fdf->anglex + 0.1;
-		fdf->angley = fdf->angley + 0.1;
-		make_modified(fdf);
-		print_figure(fdf);
-	}
-	if (key == 125) //стрелка вниз
-	{
-		mlx_clear_window(fdf->mlx, fdf->win);
-		fdf->anglex = fdf->anglex - 0.1;
-		fdf->angley = fdf->angley - 0.1;
-		make_modified(fdf);
-		print_figure(fdf);
-	}
-	if (key == 123) //стрелка влево
-	{
-		mlx_clear_window(fdf->mlx, fdf->win);
-		fdf->anglex = fdf->anglex - 0.1;
-		make_modified(fdf);
-		print_figure(fdf);
-	}
-	if (key == 124) //стрелка вправо
-	{
-		mlx_clear_window(fdf->mlx, fdf->win);
-		fdf->angley = fdf->angley - 0.1;
-		make_modified(fdf);
-		print_figure(fdf);
-	}
-	if (key == 27) // МИНУС
-	{
-		zoom_minus(fdf);
-		mlx_clear_window(fdf->mlx, fdf->win);
-		make_modified(fdf);
-		print_figure(fdf);
-	}
-	if (key == 24) // ПЛЮС
-	{
-		zoom_plus(fdf);
-		mlx_clear_window(fdf->mlx, fdf->win);
-		make_modified(fdf);
-		print_figure(fdf);
-	}
-	if (key == 25) // 9
-	{
-		apl_plus(fdf);
-		mlx_clear_window(fdf->mlx, fdf->win);
-		make_modified(fdf);
-		print_figure(fdf);
-	}
-	if (key == 29) // 0
-	{
-		apl_minus(fdf);
-		mlx_clear_window(fdf->mlx, fdf->win);
 		make_modified(fdf);
 		print_figure(fdf);
 	}

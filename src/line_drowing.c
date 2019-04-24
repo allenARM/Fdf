@@ -6,34 +6,32 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 15:37:15 by amelikia          #+#    #+#             */
-/*   Updated: 2019/04/22 14:02:59 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:54:49 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-//98765, 234567, 3456765, 8765678
-void	printLOW(t_fdf *fdf, double x1, double y1, double x2, double y2)
-{
-	int color = 98765;
-	double diffx;
-	double diffy;
-	double yi;
-	double d;
-	double y;
-	double x;
 
-	x1 > x2 ? (diffx = x1 - x2) : (diffx = x2 - x1);
-	diffy = y2 - y1;
-	yi = 1;
-	if (diffy < 0)
-	{
-		yi = -1;
-		diffy = -diffy;
-	}
+void	print_low(t_fdf *fdf, t_double_point *first, t_double_point *second)
+{
+	int		color;
+	double	diffx;
+	double	diffy;
+	double	yi;
+	double	d;
+	double	y;
+	double	x;
+
+	color = 98765;
+	diffx = second->x - first->x;
+	diffy = second->y - first->y;
+	yi = 0;
+	(diffy < 0) ? (yi -= 1) : (yi += 1);
+	(diffy < 0) ? (diffy = -diffy) : (yi += 0);
 	d = 2 * diffy - diffx;
-	y = y1;
-	x = x1;
-	while (x != x2)
+	y = first->y;
+	x = first->x - 1;
+	while (++x != second->x)
 	{
 		mlx_pixel_put(fdf->mlx, fdf->win, x, y, color);
 		if (d > 0)
@@ -42,33 +40,30 @@ void	printLOW(t_fdf *fdf, double x1, double y1, double x2, double y2)
 			d = d - 2 * diffx;
 		}
 		color -= 280;
-		x++;
 		d = d + 2 * diffy;
 	}
 }
 
-void	printHIGH(t_fdf *fdf, double x1, double y1, double x2, double y2)
+void	print_high(t_fdf *fdf, t_double_point *first, t_double_point *second)
 {
-	int color = 98765;
-	double diffx;
-	double diffy;
-	double xi;
-	double d;
-	double y;
-	double x;
+	int		color;
+	double	diffx;
+	double	diffy;
+	double	xi;
+	double	d;
+	double	y;
+	double	x;
 
-	diffx = x2 - x1;
-	y1 > y2 ? (diffy = y1 - y2) : (diffy = y2 - y1);
-	xi = 1;
-	if (diffx < 0)
-	{
-		xi = -1;
-		diffx = -diffx;
-	}
+	color = 98765;
+	diffx = second->x - first->x;
+	diffy = second->y - first->y;
+	xi = 0;
+	(diffx < 0) ? (xi -= 1) : (xi = 1);
+	(diffx < 0) ? (diffx = -diffx) : (xi += 0);
 	d = 2 * diffx - diffy;
-	y = y1;
-	x = x1;
-	while (y != y2)
+	y = first->y - 1;
+	x = first->x;
+	while (++y != second->y)
 	{
 		mlx_pixel_put(fdf->mlx, fdf->win, x, y, color);
 		if (d > 0)
@@ -77,25 +72,24 @@ void	printHIGH(t_fdf *fdf, double x1, double y1, double x2, double y2)
 			d = d - 2 * diffy;
 		}
 		color -= 280;
-		y++;
 		d = d + 2 * diffx;
 	}
 }
 
 void	printline(t_fdf *fdf)
 {
-	if (ft_abs(fdf->y2 - fdf->y1) < ft_abs(fdf->x2 - fdf->x1))
+	if (ft_abs(fdf->second->y - fdf->first->y) < ft_abs(fdf->second->x - fdf->first->x))
 	{
-		if (fdf->x1 > fdf->x2)
-			printLOW(fdf, fdf->x2, fdf->y2, fdf->x1, fdf->y1);
+		if (fdf->first->x > fdf->second->x)
+			print_low(fdf, fdf->second, fdf->first);
 		else
-			printLOW(fdf, fdf->x1, fdf->y1, fdf->x2, fdf->y2);
+			print_low(fdf, fdf->first, fdf->second);
 	}
 	else
 	{
-		if (fdf->y1 > fdf->y2)
-			printHIGH(fdf, fdf->x2, fdf->y2, fdf->x1, fdf->y1);
+		if (fdf->first->y > fdf->second->y)
+			print_high(fdf, fdf->second, fdf->first);
 		else
-			printHIGH(fdf, fdf->x1, fdf->y1, fdf->x2, fdf->y2);
+			print_high(fdf, fdf->first, fdf->second);
 	}
 }

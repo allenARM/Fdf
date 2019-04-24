@@ -6,12 +6,11 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 12:21:29 by amelikia          #+#    #+#             */
-/*   Updated: 2019/04/22 14:06:00 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/04/23 17:05:53 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
 
 void	print_figure(t_fdf *fdf)
 {
@@ -24,13 +23,13 @@ void	print_figure(t_fdf *fdf)
 		j = 0;
 		while (j < fdf->width - 1)
 		{
-			fdf->x1 = fdf->xyz_modif[i][j]->x;
-			fdf->y1 = fdf->xyz_modif[i][j]->y;
-			fdf->x2 = fdf->xyz_modif[i + 1][j]->x;
-			fdf->y2 = fdf->xyz_modif[i + 1][j]->y;
+			fdf->first->x = fdf->xyz_modif[i][j]->x;
+			fdf->first->y = fdf->xyz_modif[i][j]->y;
+			fdf->second->x = fdf->xyz_modif[i + 1][j]->x;
+			fdf->second->y = fdf->xyz_modif[i + 1][j]->y;
 			printline(fdf);
-			fdf->x2 = fdf->xyz_modif[i][j + 1]->x;
-			fdf->y2 = fdf->xyz_modif[i][j + 1]->y;
+			fdf->second->x = fdf->xyz_modif[i][j + 1]->x;
+			fdf->second->y = fdf->xyz_modif[i][j + 1]->y;
 			printline(fdf);
 			j++;
 		}
@@ -45,7 +44,7 @@ void	read_file(t_fdf *fdf, char *str)
 	char	*line;
 
 	matrix = NULL;
-	fdf->x1 = 0;
+	fdf->first->x = 0;
 	fd = open(str, O_RDONLY);
 	while (get_next_line(fd, &line) == 1)
 	{

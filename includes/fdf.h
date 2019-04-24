@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 20:36:55 by amelikia          #+#    #+#             */
-/*   Updated: 2019/01/07 12:44:22 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:59:58 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,28 @@ typedef struct		s_point
 	int			z;
 }					t_point;
 
+typedef struct		s_double_point
+{
+	double		x;
+	double		y;
+}					t_double_point;
+
 typedef struct		s_fdf
 {
 	void			*mlx;
 	void			*win;
-	double		x1;
-	double		x2;
-	double		y1;
-	double		y2;
+	t_double_point	*first;
+	t_double_point	*second;
 	int				**num;
 	int				width;
 	int				height;
-	double			anglex;
-	double			angley;
+	t_double_point	*angle;
 	double			color_incr;
 	t_point			***xyz_stock;
 	t_point			***xyz_modif;
 }					t_fdf;
 
-int					exit_fn(int key, t_fdf *fdf);
+int					exit_fn(int key, t_fdf *fdf, int i);
 void				assign_to_zero(t_fdf *fdf);
 void				read_file(t_fdf *fdf, char *str);
 void				move_to_int(t_list *matrix, t_fdf *fdf);

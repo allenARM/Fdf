@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 17:33:11 by amelikia          #+#    #+#             */
-/*   Updated: 2019/01/07 12:32:14 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/04/23 17:06:17 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	save_data_in_stock(t_fdf *fdf)
 			fdf->xyz_stock[i][j]->x = j + 1;
 			fdf->xyz_stock[i][j]->y = i + 1;
 			fdf->xyz_stock[i][j]->z = fdf->num[i][j];
-
 			fdf->xyz_stock[i][j]->x *= 30;
 			fdf->xyz_stock[i][j]->y *= 30;
 			fdf->xyz_stock[i][j]->z *= 10;
