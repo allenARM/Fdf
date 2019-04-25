@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 12:21:29 by amelikia          #+#    #+#             */
-/*   Updated: 2019/04/22 14:06:00 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/04/24 19:45:09 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,18 @@ void	print_figure(t_fdf *fdf)
 			fdf->x2 = fdf->xyz_modif[i][j + 1]->x;
 			fdf->y2 = fdf->xyz_modif[i][j + 1]->y;
 			printline(fdf);
+			fdf->x1 = fdf->xyz_modif[fdf->height -1][j]->x;
+			fdf->y1 = fdf->xyz_modif[fdf->height -1][j]->y;
+			fdf->x2 = fdf->xyz_modif[fdf->height -1][j + 1]->x;
+			fdf->y2 = fdf->xyz_modif[fdf->height -1][j + 1]->y;
+			printline(fdf);
 			j++;
 		}
+		fdf->x1 = fdf->xyz_modif[i][fdf->width - 1]->x;
+		fdf->y1 = fdf->xyz_modif[i][fdf->width - 1]->y;
+		fdf->x2 = fdf->xyz_modif[i + 1][fdf->width - 1]->x;
+		fdf->y2 = fdf->xyz_modif[i + 1][fdf->width - 1]->y;
+		printline(fdf);
 		i++;
 	}
 }
