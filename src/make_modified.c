@@ -29,9 +29,9 @@ void	make_modified(t_fdf *fdf)
 		{
 			fdf->xyz_modif[i][j] = malloc(sizeof(t_point));
 			fdf->xyz_modif[i][j]->x = 400 + ((fdf->xyz_stock[i][j]->x -\
-				fdf->xyz_stock[i][j]->y) * cos(fdf->anglex));
+				fdf->xyz_stock[i][j]->y) * cos(fdf->angle->x));
 			fdf->xyz_modif[i][j]->y = 150 + (((fdf->xyz_stock[i][j]->x +\
-				fdf->xyz_stock[i][j]->y) * sin(fdf->angley))\
+				fdf->xyz_stock[i][j]->y) * sin(fdf->angle->y))\
 				- fdf->xyz_stock[i][j]->z);
 			j++;
 		}

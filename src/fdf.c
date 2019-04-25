@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 20:10:32 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/17 21:32:48 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:12:42 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ int		main(int argc, char **argv)
 
 	assign_to_zero(&fdf);
 	fdf.mlx = mlx_init();
-	fdf.win = mlx_new_window(fdf.mlx, 1024, 1024, "JOPA");
+	fdf.win = mlx_new_window(fdf.mlx, 1024, 1024, "FDF");
 	if (argc == 2)
 		read_file(&fdf, argv[1]);
 	mlx_key_hook(fdf.win, exit_fn, &fdf);
-	// mlx_mouse_hook(fdf.win, mouse_release, &fdf);
 	mlx_loop(fdf.mlx);
 }

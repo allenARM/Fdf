@@ -6,7 +6,7 @@
 #    By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/10 22:17:06 by amelikia          #+#    #+#              #
-#    Updated: 2018/12/04 15:00:00 by amelikia         ###   ########.fr        #
+#    Updated: 2019/04/24 12:41:33 by knaumov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -191,15 +191,15 @@ OFILES =   ./ft_atoi.o \
 all: $(NAME)
 
 $(NAME):
-	gcc $(CFLAGS) -I$(HEADER) -c $(CFILES) $(PRINTF_CFILES)
-	ar rc $(NAME) $(OFILES) $(PRINTF_OFILES)
-	ranlib $(NAME)
+	@gcc $(CFLAGS) -I$(HEADER) -c $(CFILES) $(PRINTF_CFILES)
+	@ar rc $(NAME) $(OFILES) $(PRINTF_OFILES)
+	@ranlib $(NAME)
 
 clean:
-	/bin/rm -f $(OFILES)
-	/bin/rm -f $(PRINTF_OFILES)
+	@/bin/rm -f $(OFILES)
+	@/bin/rm -f $(PRINTF_OFILES)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all

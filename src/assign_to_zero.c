@@ -14,10 +14,13 @@
 
 void	assign_to_zero(t_fdf *fdf)
 {
-	fdf->x1 = 0;
-	fdf->x2 = 0;
-	fdf->y1 = 0;
-	fdf->y2 = 0;
-	fdf->anglex = 0.523599;
-	fdf->angley = 0.523599;
+	fdf->first = (t_double_point *)malloc(sizeof(t_double_point));
+	fdf->second = (t_double_point *)malloc(sizeof(t_double_point));
+	fdf->angle = (t_double_point *)malloc(sizeof(t_double_point));
+	fdf->first->x = 0;
+	fdf->first->y = 0;
+	fdf->second->x = 0;
+	fdf->second->y = 0;
+	fdf->angle->x = 0.523599;
+	fdf->angle->y = 0.523599;
 }
