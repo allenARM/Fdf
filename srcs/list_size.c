@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   list_size.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amelikia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/19 14:03:48 by amelikia          #+#    #+#             */
-/*   Updated: 2019/04/24 21:18:41 by knaumov          ###   ########.fr       */
+/*   Created: 2018/12/09 16:48:47 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/10 13:20:12 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-size_t	ft_abs(long long nb)
+int	ft_list_size(t_list *list)
 {
-	if (nb < 0)
-		nb = -nb;
-	return (nb);
+	int i;
+
+	i = 0;
+	if (list == NULL)
+		return (0);
+	while (list)
+	{
+		i++;
+		list = list->next;
+	}
+	return (i);
 }
