@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/09 15:38:14 by amelikia          #+#    #+#             */
-/*   Updated: 2019/04/23 17:04:33 by knaumov          ###   ########.fr       */
+/*   Updated: 2019/06/18 13:57:11 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int		exit_fn(int key, t_fdf *fdf, int i)
 	if (key == 42 || key == 126 || key == 125 || key == 123 || \
 		key == 124 || key == 27 || key == 25 || key == 24 || key == 29)
 		mlx_clear_window(fdf->mlx, fdf->win);
-	(key == 53) ? exit(1) : (i = 0);
+	(key == 53) ? clean_and_exit(fdf) : (i = 0);
 	(key == 126) ? fdf->angle->x += 0.1 : (i = 0);
 	(key == 126) ? fdf->angle->y += 0.1 : (i = 0);
 	(key == 125 || key == 123) ? fdf->angle->x -= 0.1 : (i = 0);
@@ -107,6 +107,7 @@ int		exit_fn(int key, t_fdf *fdf, int i)
 	{
 		make_modified(fdf);
 		print_figure(fdf);
+		clean_t_point_matrix(&fdf->xyz_modif, fdf->height, fdf->width);
 	}
 	return (0);
 }

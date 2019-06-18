@@ -20,9 +20,10 @@ BLUE_EXTRA = \033[1;36m
 
 all: $(EXEC)
 
+# -fsanitize=address -fsanitize=undefined
 $(EXEC):
 	@echo "$(GREEN)Making objects files for $(GREEN_EXTRA)$(LIB_FDF)$(RESET)"
-	@gcc -Wall -Wextra -Werror $(SRCS) $(INCLUDES) -c -fsanitize=address -fsanitize=undefined -g
+	@gcc -Wall -Wextra -Werror $(SRCS) $(INCLUDES) -c -g
 	@echo "$(GREEN)Compiling $(GREEN_EXTRA)$(LIB_FDF)$(RESET)"
 	@ar rc $(LIB_FDF) *.o
 	@ranlib $(LIB_FDF)
@@ -31,7 +32,7 @@ $(EXEC):
 	@mv *.o $(OBJ)
 	#@make -C libft
 	@echo "$(GREEN)Compiling executable $(GREEN_EXTRA)$(EXEC)$(RESET)"
-	@gcc -Wall -Wextra -Werror $(LIB_FDF) $(LIBFT) $(INCLUDES) $(INCLUDES2) -L minilibx_macos -lmlx -framework OpenGL -framework AppKit -fsanitize=address -fsanitize=undefined -g -o $(EXEC)
+	@gcc -Wall -Wextra -Werror $(LIB_FDF) $(LIBFT) $(INCLUDES) $(INCLUDES2) -L minilibx_macos -lmlx -framework OpenGL -framework AppKit -g -o $(EXEC)
 	@echo "$(BLUE_EXTRA)$(EXEC)$(BLUE): Complete$(RESET)"
 
 clean:

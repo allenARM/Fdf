@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 17:33:11 by amelikia          #+#    #+#             */
-/*   Updated: 2019/04/24 16:15:17 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/06/18 13:45:58 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	save_data_in_stock(t_fdf *fdf)
 
 	i = 0;
 	j = 0;
-	fdf->xyz_stock = malloc(sizeof(t_point*) * (fdf->height + 5));
+	fdf->xyz_stock = malloc(sizeof(t_point**) * (fdf->height + 1));
 	fdf->xyz_stock[fdf->height] = NULL;
 	while (i < fdf->height)
 	{
-		fdf->xyz_stock[i] = malloc(sizeof(t_point) * (fdf->width + 5));
+		fdf->xyz_stock[i] = malloc(sizeof(t_point*) * (fdf->width + 1));
 		j = 0;
 		while (j < fdf->width)
 		{
@@ -36,6 +36,7 @@ void	save_data_in_stock(t_fdf *fdf)
 			fdf->xyz_stock[i][j]->z *= 10;
 			j++;
 		}
+		fdf->xyz_stock[i][j] = NULL;
 		i++;
 	}
 }

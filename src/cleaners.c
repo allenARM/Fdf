@@ -1,26 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assign_to_zero.c                                   :+:      :+:    :+:   */
+/*   cleaners.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/09 15:40:21 by amelikia          #+#    #+#             */
-/*   Updated: 2019/06/18 13:40:58 by amelikia         ###   ########.fr       */
+/*   Created: 2019/06/18 14:02:20 by amelikia          #+#    #+#             */
+/*   Updated: 2019/06/18 14:30:02 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	assign_to_zero(t_fdf *fdf)
+void		clean_t_point_matrix(t_point ****arr, int height, int width)
 {
-	fdf->first = (t_point *)malloc(sizeof(t_point));
-	fdf->second = (t_point *)malloc(sizeof(t_point));
-	fdf->angle = (t_point *)malloc(sizeof(t_point));
-	fdf->first->x = 0;
-	fdf->first->y = 0;
-	fdf->second->x = 0;
-	fdf->second->y = 0;
-	fdf->angle->x = 0.523599;
-	fdf->angle->y = 0.523599;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			free((*arr)[i][j]);
+			++j;
+		}
+		free((*arr)[i]);
+		++i;
+	}
+	free(*arr);
+}
+
+void		clean_and_exit(t_fdf *fdf)
+{
+	free(fdf->first);
+	free(fdf->second);
+	free(fdf->angle);
+	clean_t_point_matrix(&fdf->xyz_stock, fdf->height, fdf->width);
+	exit(1);
 }

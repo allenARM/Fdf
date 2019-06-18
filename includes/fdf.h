@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 20:36:55 by amelikia          #+#    #+#             */
-/*   Updated: 2019/04/24 12:59:58 by knaumov          ###   ########.fr       */
+/*   Updated: 2019/06/18 14:29:33 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,21 @@ typedef struct		s_list
 
 typedef struct		s_point
 {
-	int			x;
-	int			y;
-	int			z;
+	double			x;
+	double			y;
+	double			z;
 }					t_point;
-
-typedef struct		s_double_point
-{
-	double		x;
-	double		y;
-}					t_double_point;
 
 typedef struct		s_fdf
 {
 	void			*mlx;
 	void			*win;
-	t_double_point	*first;
-	t_double_point	*second;
+	t_point			*first;
+	t_point			*second;
 	int				**num;
 	int				width;
 	int				height;
-	t_double_point	*angle;
+	t_point			*angle;
 	double			color_incr;
 	t_point			***xyz_stock;
 	t_point			***xyz_modif;
@@ -73,5 +67,14 @@ int					find_len(char *s);
 */
 
 int					mouse_release(int button, int x, int y, t_fdf *fdf);
+
+/*
+** clearners
+*/
+
+void				clean_t_point_matrix(t_point ****arr,\
+				int height, int width);
+void				clean_and_exit(t_fdf *fdf);
+void				ft_clean_list(t_list **list);
 
 #endif
